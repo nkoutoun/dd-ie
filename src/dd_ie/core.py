@@ -9,6 +9,8 @@ This module implements the methodology from:
 
 from __future__ import annotations
 
+from typing import Any
+
 import numpy as np
 import pandas as pd
 from linearmodels import PanelOLS
@@ -436,18 +438,14 @@ def estimate_fe_models(
 
 
 def _create_comparison_table(
-    standard_results: object,
-    dd_results: object,
+    standard_results: Any,
+    dd_results: Any,
     x_var: str,
     z_var: str,
     verbose: bool,
 ) -> ComparisonResult:
     """Create coefficient comparison table between standard and dd FE models."""
-    std_params = standard_results.params  # type: ignore[union-attr]
-    std_se = standard_results.std_errors  # type: ignore[union-attr]
-    dd_params = dd_results.params  # type: ignore[union-attr]
-    dd_se = dd_results.std_errors  # type: ignore[union-attr]
-
+    std_params = standard_results.params    std_se = standard_results.std_errors    dd_params = dd_results.params    dd_se = dd_results.std_errors
     int_std = f"int_{x_var}_{z_var}"
     int_dd = f"dd_int_{x_var}_{z_var}"
 
@@ -507,8 +505,8 @@ def _create_comparison_table(
 
 
 def perform_hausman_test(
-    standard_results: object,
-    dd_results: object,
+    standard_results: Any,
+    dd_results: Any,
     x_var: str,
     z_var: str,
     verbose: bool = True,
@@ -546,11 +544,7 @@ def perform_hausman_test(
             logger.info("  H0: No systematic difference between estimators")
             logger.info("  Ha: Standard FE estimator is biased")
 
-        b_std = standard_results.params  # type: ignore[union-attr]
-        b_dd = dd_results.params  # type: ignore[union-attr]
-        V_std = standard_results.cov  # type: ignore[union-attr]
-        V_dd = dd_results.cov  # type: ignore[union-attr]
-
+        b_std = standard_results.params        b_dd = dd_results.params        V_std = standard_results.cov        V_dd = dd_results.cov
         int_std_name = f"int_{x_var}_{z_var}"
         int_dd_name = f"dd_int_{x_var}_{z_var}"
 
@@ -641,7 +635,7 @@ def perform_hausman_test(
             # Robust computation for non-positive definite matrices
             # Approach 1: Eigendecomposition
             eigenvals_real, eigenvecs = np.linalg.eigh(V_diff)
-            max_eigenval = np.max(np.abs(eigenvals_real))
+            max_eigenval: float = float(np.max(np.abs(eigenvals_real)))
             tolerance = max_eigenval * len(V_diff) * np.finfo(float).eps
             valid_mask = eigenvals_real > tolerance
 
