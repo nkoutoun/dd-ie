@@ -445,7 +445,10 @@ def _create_comparison_table(
     verbose: bool,
 ) -> ComparisonResult:
     """Create coefficient comparison table between standard and dd FE models."""
-    std_params = standard_results.params    std_se = standard_results.std_errors    dd_params = dd_results.params    dd_se = dd_results.std_errors
+    std_params = standard_results.params
+    std_se = standard_results.std_errors
+    dd_params = dd_results.params
+    dd_se = dd_results.std_errors
     int_std = f"int_{x_var}_{z_var}"
     int_dd = f"dd_int_{x_var}_{z_var}"
 
@@ -544,7 +547,10 @@ def perform_hausman_test(
             logger.info("  H0: No systematic difference between estimators")
             logger.info("  Ha: Standard FE estimator is biased")
 
-        b_std = standard_results.params        b_dd = dd_results.params        V_std = standard_results.cov        V_dd = dd_results.cov
+        b_std = standard_results.params
+        b_dd = dd_results.params
+        V_std = standard_results.cov
+        V_dd = dd_results.cov
         int_std_name = f"int_{x_var}_{z_var}"
         int_dd_name = f"dd_int_{x_var}_{z_var}"
 
