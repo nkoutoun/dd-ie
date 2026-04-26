@@ -1,7 +1,7 @@
 # dd-ie: Double Demeaning for Fixed Effects Interactions
 
 [![CI](https://github.com/nkoutoun/dd-ie/actions/workflows/ci.yml/badge.svg)](https://github.com/nkoutoun/dd-ie/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/dd-ie)](https://pypi.org/project/dd-ie/)
+[![PyPI](https://img.shields.io/pypi/v/ddinteract)](https://pypi.org/project/ddinteract/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Typed](https://img.shields.io/badge/typing-typed-blue)](https://peps.python.org/pep-0561/)
@@ -25,8 +25,10 @@ This eliminates all between-unit heterogeneity from the interaction term.
 ## Installation
 
 ```bash
-pip install dd-ie
+pip install ddinteract
 ```
+
+The PyPI distribution is named `ddinteract`, but the import name remains `dd_ie`.
 
 For development:
 
